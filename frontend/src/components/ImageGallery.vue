@@ -96,9 +96,9 @@ html, body {
   padding: 0;
   height: 100%;
   overflow: hidden;
-  font-family: 'Rubik', sans-serif;
-  background-color: #343541; /* Cinza escuro */
-  color: white; /* Texto branco */
+  font-family: 'Roboto', sans-serif; 
+  background-color: #111112; 
+  color: white; 
 }
 
 .image-gallery {
@@ -106,21 +106,23 @@ html, body {
   flex-direction: column;
   height: 100vh;
   overflow: hidden;
-  background-color: #343541; /* Fundo cinza escuro */
+  background-color: #111112; 
 }
 
 .gallery-header {
-  background-color: #202123; /* Cinza escuro */
+  background-color: #111112; 
   color: white;
   text-align: center;
-  font-size: 2rem;
+  font-size: 1.5rem;
   padding: 10px 0;
   box-sizing: border-box;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  position: relative; /* Permitir posicionamento absoluto das logos */
+  position: relative; 
+  font-family: 'Roboto', sans-serif; 
+  font-weight: 600;
 }
 
 .header-title {
@@ -129,18 +131,18 @@ html, body {
 }
 
 .logo {
-  height: 50px; /* Ajuste conforme necessário */
-  border: none !important; /* Remover bordas das logos */
-  margin: 0 10px; /* Adicionar espaço ao redor das logos */
+  height: 50px; 
+  border: none !important; 
+  margin: 0 10px; 
   position: absolute;
 }
 
 .logo:first-child {
-  left: 10px; /* Ajuste conforme necessário */
+  left: 10px;
 }
 
 .logo:last-child {
-  right: 10px; /* Ajuste conforme necessário */
+  right: 10px; 
 }
 
 .image-container {
@@ -149,13 +151,13 @@ html, body {
   justify-content: center;
   align-items: center;
   overflow: hidden;
-  background-color: #343541; /* Fundo cinza escuro */
+  background-color: #111112; 
 }
 
 .image-container img {
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
-  border: 5px solid #343541; /* Bordas cinza escuro */
+  border: 5px solid #111112; 
 }
 </style>

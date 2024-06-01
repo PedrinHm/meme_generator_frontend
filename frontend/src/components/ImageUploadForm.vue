@@ -1,30 +1,30 @@
 <template>
   <div class="upload-form">
     <header class="form-header">
-      <div class="header-title">Envie sua Imagem para Gerar um Meme</div>
+      <div class="header-title">Gerador de Memes</div>
     </header>
     <form @submit.prevent="uploadImage">
-      <div v-if="selectedFile || uploadedImageUrl" class="preview">
-        <p v-if="selectedFile && !uploadedImageUrl">Imagem selecionada:</p>
-        <p v-if="uploadedImageUrl">Meme gerado com sucesso!</p>
-        <img :src="uploadedImageUrl ? uploadedImageUrl : imagePreview" :alt="uploadedImageUrl ? 'Generated Meme' : 'Preview'" />
+      <div class="preview">
+        <p v-if="!selectedFile && !uploadedImageUrl">
+          Adicione uma imagem aqui para gerar um meme!
+        </p>
+        <p v-else-if="selectedFile && !uploadedImageUrl">
+          Imagem selecionada!
+        </p>
+        <p v-if="uploadedImageUrl">
+          Meme gerado com sucesso!
+        </p>
+        <img v-if="uploadedImageUrl || imagePreview" :src="uploadedImageUrl ? uploadedImageUrl : imagePreview" :alt="uploadedImageUrl ? 'Generated Meme' : 'Preview'" />
       </div>
-      <label class="file-input-label">
-        Anexar Imagem <i class="fas fa-paperclip"></i>
-        <input type="file" @change="onFileChange" />
+      <label :class="[selectedFile ? 'change-image-label' : 'add-image-label']" @click="triggerFileInput($event)">
+        <i :class="[selectedFile ? 'fas fa-exchange-alt' : 'fas fa-plus']"></i>
       </label>
+      <input type="file" @change="onFileChange" ref="fileInput" style="display: none;"/>                  
       <button type="submit" :disabled="!selectedFile || isLoading">
         <span v-if="isLoading">Carregando...</span>
         <span v-else>Enviar</span>
       </button>
     </form>
-    <footer class="site-footer">
-      <p>© 2024 Pedro Mendes. Todos os direitos reservados.</p>
-      <p>
-        <a href="https://www.linkedin.com/in/pedro-mendes-919b51181/">Linkedin</a> |
-        <a href="https://github.com/PedrinHm">GitHub</a>
-      </p>
-    </footer>
   </div>
 </template>
 
@@ -44,7 +44,8 @@ export default {
   methods: {
     onFileChange(event) {
       this.selectedFile = event.target.files[0];
-      this.uploadedImageUrl = null; // Reseta a URL do meme gerado quando uma nova imagem é selecionada
+      this.uploadedImageUrl = null;
+      this.imagePreview = null; 
       if (this.selectedFile) {
         const reader = new FileReader();
         reader.onload = (e) => {
@@ -56,7 +57,7 @@ export default {
     async uploadImage() {
       if (!this.selectedFile) return;
 
-      this.isLoading = true; // Inicia o estado de carregamento
+      this.isLoading = true; 
 
       const formData = new FormData();
       formData.append('file', this.selectedFile);
@@ -71,12 +72,17 @@ export default {
       } catch (error) {
         console.error('Erro ao enviar a imagem:', error);
       } finally {
-        this.isLoading = false; // Encerra o estado de carregamento
+        this.isLoading = false; 
       }
     },
+    triggerFileInput(event) {
+      event.stopImmediatePropagation();
+      this.$refs.fileInput.click();
+    }
   },
 };
 </script>
+
 
 <style scoped>
 html, body {
@@ -84,24 +90,24 @@ html, body {
   padding: 0;
   height: 100%;
   overflow: hidden;
-  font-family: 'Rubik', sans-serif;
-  background-color: #343541; /* Cinza escuro */
-  color: white; /* Texto branco */
+  font-family: 'Roboto', sans-serif;
+  background-color: #111112; 
+  color: white; 
 }
 
 .upload-form {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 0; /* Remover margem superior */
+  margin-top: 0; 
   padding: 0;
-  background-color: #343541; /* Fundo cinza escuro */
-  color: white; /* Texto branco */
-  min-height: 100vh; /* Garantir que o fundo preencha toda a altura da tela */
+  background-color: #111112; 
+  color: white;
+  min-height: 100vh; 
 }
 
 .form-header {
-  background-color: #202123; /* Cinza escuro */
+  background-color: #111112; 
   color: white;
   text-align: center;
   font-size: 1.5rem;
@@ -112,7 +118,9 @@ html, body {
   display: flex;
   justify-content: center;
   align-items: center;
-  position: relative; /* Permitir posicionamento absoluto das logos */
+  position: relative; 
+  font-family: 'Roboto', sans-serif;
+  font-weight: 600;
 }
 
 .header-title {
@@ -126,33 +134,58 @@ form {
   align-items: center;
 }
 
-.file-input-label {
+.add-image-label {
+  width: 150px; 
+  height: 200px; 
   display: flex;
+  justify-content: center;
   align-items: center;
   cursor: pointer;
-  font-size: 1.5rem;
-  color: #ffffff;
-  margin-bottom: 10px;
-  font-family: 'Rubik', sans-serif; /* Aplicando a mesma fonte */
+  background-color: #4fd34d00;
+  border: 5px , solid, #fff;
+  border-radius: 15px; 
+  transition: background-color 0.3s, box-shadow 0.3s;
+  margin: 20px;
 }
 
-.file-input-label input {
-  display: none;
+.change-image-label {
+  width: 50px; 
+  height: 50px; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  background-color: #4fd34d00;
+  border: 5px , solid, #fff;
+  border-radius: 15px; 
+  transition: background-color 0.3s, box-shadow 0.3s;
+  margin: 20px;
+}
+
+.add-image-label i, .change-image-label i {
+  font-size: 2rem;
+  color: white;
 }
 
 button {
-  background-color: #8cae77;
+  background-color: #4FD34D;
   color: white;
   border: none;
   padding: 10px 20px;
   cursor: pointer;
-  border-radius: 5px; /* Bordas arredondadas */
-  font-family: 'Rubik', sans-serif; /* Aplicando a mesma fonte */
+  border-radius: 5px; 
+  font-family: 'Roboto', sans-serif; 
+  font-size: 1.1rem;
 }
 
 button:disabled {
-  background-color: #ccc;
+  background-color: #D63938;
   cursor: not-allowed;
+}
+
+p {
+  font-family: 'Roboto', sans-serif; 
+
 }
 
 .preview, .result {
@@ -160,34 +193,19 @@ button:disabled {
   text-align: center;
 }
 
-.preview img, .result img {
+@keyframes border-animation {
+  0% { border-color: red; }
+  25% { border-color: blue; }
+  50% { border-color: green; }
+  75% { border-color: yellow; }
+  100% { border-color: red; }
+}
+
+.preview img {
   max-width: 100%;
   max-height: 300px;
   object-fit: contain;
-  border: 5px solid #343541; /* Bordas cinza escuro */
-}
-
-.site-footer {
-  background-color: #202123; /* Cinza escuro */
-  color: #ccc; /* Cor do texto do rodapé */
-  text-align: center;
-  padding: 20px;
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-}
-
-.site-footer p {
-  margin: 5px 0;
-}
-
-.site-footer a {
-  color: #8cae77; /* Cor dos links do rodapé */
-  text-decoration: none;
-  margin: 0 10px;
-}
-
-.site-footer a:hover {
-  text-decoration: underline;
+  border: 5px solid #0C111C;
+  animation: border-animation 4s linear infinite;
 }
 </style>
