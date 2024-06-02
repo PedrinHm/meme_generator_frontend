@@ -85,29 +85,18 @@ export default {
 
 
 <style scoped>
-html, body {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  overflow: hidden;
-  font-family: 'Roboto', sans-serif;
-  background-color: #111112; 
-  color: white; 
-}
-
 .upload-form {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-top: 0; 
   padding: 0;
-  background-color: #111112; 
+  background: linear-gradient(to bottom, #111112, #150C20);
   color: white;
   min-height: 100vh; 
 }
 
 .form-header {
-  background-color: #111112; 
   color: white;
   text-align: center;
   font-size: 1.5rem;
@@ -185,7 +174,6 @@ button:disabled {
 
 p {
   font-family: 'Roboto', sans-serif; 
-
 }
 
 .preview, .result {
@@ -193,19 +181,10 @@ p {
   text-align: center;
 }
 
-@keyframes border-animation {
-  0% { border-color: red; }
-  25% { border-color: blue; }
-  50% { border-color: green; }
-  75% { border-color: yellow; }
-  100% { border-color: red; }
-}
-
 .preview img {
   max-width: 100%;
   max-height: 300px;
   object-fit: contain;
-  border: 5px solid #0C111C;
-  animation: border-animation 4s linear infinite;
+  border: 5px solid #ffffff;
 }
 </style>

@@ -97,7 +97,6 @@ html, body {
   height: 100%;
   overflow: hidden;
   font-family: 'Roboto', sans-serif; 
-  background-color: #111112; 
   color: white; 
 }
 
@@ -106,7 +105,7 @@ html, body {
   flex-direction: column;
   height: 100vh;
   overflow: hidden;
-  background-color: #111112; 
+  background: linear-gradient(to bottom, #111112, #150C20);
 }
 
 .gallery-header {
@@ -151,13 +150,12 @@ html, body {
   justify-content: center;
   align-items: center;
   overflow: hidden;
-  background-color: #111112; 
+  background: linear-gradient(to bottom, #111112, #150C20);
 }
 
 .image-container img {
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
-  border: 5px solid #111112; 
 }
 </style>
