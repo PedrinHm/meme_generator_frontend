@@ -91,7 +91,7 @@ export default {
   align-items: center;
   margin-top: 0; 
   padding: 0;
-  background: linear-gradient(to bottom, #111112, #150C20);
+  background: linear-gradient(to bottom, #08111E, #0C1928, #05264E, #002F6B);
   color: white;
   min-height: 100vh; 
 }

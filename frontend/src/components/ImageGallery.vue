@@ -2,7 +2,7 @@
   <div class="image-gallery">
     <header ref="header" class="gallery-header">
       <img src="@/assets/logo1.png" alt="Logo 1" class="logo">
-      <div class="header-title">Memes da Galera</div>
+      <div class="header-title">Galeria de Memes da Galera</div>
       <img src="@/assets/logo2.png" alt="Logo 2" class="logo">
     </header>
     <div ref="imageContainer" class="image-container">
@@ -65,7 +65,7 @@ export default {
     updateGallery() {
       this.updateInterval = setInterval(() => {
         this.fetchImages(); 
-      }, 5000);
+      }, 5500);
     }
   },
   mounted() {
@@ -91,71 +91,30 @@ export default {
 </script>
 
 <style scoped>
-html, body {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  overflow: hidden;
-  font-family: 'Roboto', sans-serif; 
-  color: white; 
-}
-
-.image-gallery {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-  overflow: hidden;
-  background: linear-gradient(to bottom, #111112, #150C20);
-}
-
 .gallery-header {
-  background-color: #111112; 
-  color: white;
-  text-align: center;
-  font-size: 1.5rem;
-  padding: 10px 0;
-  box-sizing: border-box;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative; 
+  background:  #C9E3FF;
+  color: #000000;
   font-family: 'Roboto', sans-serif; 
   font-weight: 600;
 }
 
-.header-title {
-  flex-grow: 1;
-  text-align: center;
-}
-
 .logo {
   height: 50px; 
-  border: none !important; 
   margin: 0 10px; 
   position: absolute;
 }
 
 .logo:first-child {
   left: 10px;
+  top: 5px
 }
 
 .logo:last-child {
   right: 10px; 
+  top: 5px
 }
 
 .image-container {
-  flex-grow: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-  background: linear-gradient(to bottom, #111112, #150C20);
-}
-
-.image-container img {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
+  background: linear-gradient(to bottom,  #C9E3FF, #74B7FF,  #74B7FF,  #C9E3FF);
 }
 </style>
