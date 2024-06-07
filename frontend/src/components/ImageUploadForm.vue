@@ -63,7 +63,7 @@ export default {
       formData.append('file', this.selectedFile);
 
       try {
-        const response = await axios.post('http://localhost:8000/generate-meme/', formData, {
+        const response = await axios.post('https://memegeneratorbackend-production.up.railway.app/generate-meme/', formData, {
           headers: {
             'Content-Type': 'multipart/form-data',
           },
