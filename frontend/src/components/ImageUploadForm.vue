@@ -14,12 +14,17 @@
         <p v-if="uploadedImageUrl">
           Meme gerado com sucesso!
         </p>
-        <img v-if="uploadedImageUrl || imagePreview" :src="uploadedImageUrl ? uploadedImageUrl : imagePreview" :alt="uploadedImageUrl ? 'Generated Meme' : 'Preview'" />
+        <div v-if="uploadedImageUrl || imagePreview" class="image-container">
+          <img :src="uploadedImageUrl ? uploadedImageUrl : imagePreview" alt="Generated Meme or Preview">
+          <div v-if="isProcessing" class="overlay">
+            <i class="fas fa-spinner fa-spin"></i> 
+          </div>
+        </div>
       </div>
       <label :class="[selectedFile ? 'change-image-label' : 'add-image-label']" @click="triggerFileInput($event)">
         <i :class="[selectedFile ? 'fas fa-exchange-alt' : 'fas fa-plus']"></i>
       </label>
-      <input type="file" @change="onFileChange" ref="fileInput" style="display: none;"/>                  
+      <input type="file" @change="onFileChange" ref="fileInput" style="display: none;"/>
       <button type="submit" :disabled="!selectedFile || isLoading">
         <span v-if="isLoading">Carregando...</span>
         <span v-else>Enviar</span>
@@ -38,6 +43,7 @@ export default {
       selectedFile: null,
       uploadedImageUrl: null,
       isLoading: false,
+      isProcessing: false,
       imagePreview: null,
     };
   },
@@ -45,7 +51,7 @@ export default {
     onFileChange(event) {
       this.selectedFile = event.target.files[0];
       this.uploadedImageUrl = null;
-      this.imagePreview = null; 
+      this.imagePreview = null;
       if (this.selectedFile) {
         const reader = new FileReader();
         reader.onload = (e) => {
@@ -57,7 +63,8 @@ export default {
     async uploadImage() {
       if (!this.selectedFile) return;
 
-      this.isLoading = true; 
+      this.isLoading = true;
+      this.isProcessing = true;
 
       const formData = new FormData();
       formData.append('file', this.selectedFile);
@@ -72,7 +79,8 @@ export default {
       } catch (error) {
         console.error('Erro ao enviar a imagem:', error);
       } finally {
-        this.isLoading = false; 
+        this.isLoading = false;
+        this.isProcessing = false;
       }
     },
     triggerFileInput(event) {
@@ -82,6 +90,7 @@ export default {
   },
 };
 </script>
+
 
 
 <style scoped>
@@ -187,4 +196,31 @@ p {
   object-fit: contain;
   border: 5px solid #ffffff;
 }
+
+.image-container {
+  position: relative; /* Makes the overlay positioning relative to this container */
+  display: inline-block; /* This will wrap the container around the image */
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+}
+
+.preview img {
+  max-width: 100%;
+  max-height: 300px;
+  object-fit: contain;
+  border: 5px solid #ffffff;
+}
+
 </style>
