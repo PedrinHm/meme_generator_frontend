@@ -1,15 +1,19 @@
 # meme_generator_frontend
-Projeto de Geração de Memes com API do Gemini e GPT
-## Descrição do Projeto
+Frontend do Projeto de Geração de Memes com API do Gemini e GPT
 
-Este projeto envolve a utilização de imagens como input dos usuários. O objetivo é criar um sistema que retorne legendas engraçadas para essas imagens, transformando-as em memes. Acredito que esse tipo de aplicação pode gerar bastante engajamento e prender a atenção do público.
+## Descrição do Projeto
+Este repositório contém o frontend do sistema de geração de memes, desenvolvido utilizando Vue.js. O sistema permite que os usuários façam upload de suas imagens e recebam de volta memes com legendas engraçadas, criadas automaticamente. Este tipo de aplicação visa gerar engajamento e entreter o público.
+
+Este projeto foi apresentado no workshop de inteligência artificial da UNIRV e foi uma peça chave para a demonstração prática da aplicação.
 
 ## Tecnologias Utilizadas
-Planejo utilizar as APIs do Gemini para gerar as legendas dos memes. Já realizei alguns testes de prompts, mas estou trabalhando para aprimorar ainda mais os resultados.
+- **Vue.js**: Utilizado para construir uma interface que interage com o backend.
 
-## Funcionalidade
-Input do Usuário: Os usuários poderão fazer upload de suas imagens.
-Geração de Memes: As imagens receberão legendas engraçadas geradas pelo sistema.
-Exibição ao Vivo: As imagens serão exibidas em um monitor, em uma "exibição de slides" ao vivo, mostrando os memes criados em tempo real.
+## Funcionalidades
+- **Input do Usuário**: Interface para upload de imagens pelos usuários.
+- **Exibição ao Vivo**: Exibição em tempo real das imagens enviadas com suas respectivas legendas em forma de memes.
+
 ## Objetivo
-O objetivo deste projeto é criar algo divertido que prenda a atenção dos usuários, proporcionando momentos de humor e interação.(E o principal, ser aprovado em redes neurais)
+O objetivo deste frontend é proporcionar uma experiência de usuário fluida e envolvente, permitindo interações fáceis e divertidas com o sistema de geração de memes. O projeto não apenas visa engajar os usuários, mas também demonstrar eficácia em um ambiente acadêmico, sendo aprovado com excelência.
+
+**Att: Fui aprovado com nota 100!**
